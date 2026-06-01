@@ -1,0 +1,206 @@
+name: Restructure repository into assignment folders
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  restructure:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Restructure into assignment folders
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          mkdir -p \
+            01_assignment_ai_applications \
+            02_assignment_break_the_ai \
+            03_assignment_detection_brainstorm \
+            04_assignment_knn_in_real_life \
+            05_assignment_mini_project_proposal \
+            06_assignment_ml_ideas \
+            07_assignment_prompt_engineer \
+            08_assignment_semantic_meaning \
+            09_assignment_build_dataset \
+            10_assignment_dataset_detective \
+            11_assignment_data_doctor \
+            12_assignment_customer_segmentation \
+            13_assignment_decision_tree \
+            14_assignment_house_price_predictor \
+            15_assignment_graphs \
+            16_assignment_image_as_numbers \
+            17_assignment_image_filter_lab \
+            18_assignment_numpy_speed \
+            19_assignment_movie_sentiment \
+            20_assignment_spam_classifier \
+            21_assignment_nlp_mini_app \
+            22_assignment_text_cleaner \
+            23_assignment_text_challenges \
+            24_assignment_word_importance \
+            25_assignment_python_auth_script \
+            26_assignment_conditional_statements \
+            27_assignment_student_data_manager \
+            28_assignment_sample_image
+
+          move_if_exists() {
+            local src="$1"; local dst="$2";
+            if [ -e "$src" ]; then
+              git mv -f "$src" "$dst"
+            fi
+          }
+
+          move_if_exists "List-Applications-of-AI.md" "01_assignment_ai_applications/List-Applications-of-AI.md"
+          move_if_exists "break-the-ai.md" "02_assignment_break_the_ai/break-the-ai.md"
+          move_if_exists "detection-brainstorm.md" "03_assignment_detection_brainstorm/detection-brainstorm.md"
+          move_if_exists "knn-in-real-life.md" "04_assignment_knn_in_real_life/knn-in-real-life.md"
+          move_if_exists "mini-project-proposal.md" "05_assignment_mini_project_proposal/mini-project-proposal.md"
+          move_if_exists "ml-ideas.md" "06_assignment_ml_ideas/ml-ideas.md"
+          move_if_exists "prompt-engineer.md" "07_assignment_prompt_engineer/prompt-engineer.md"
+          move_if_exists "semantic-meaning.md" "08_assignment_semantic_meaning/semantic-meaning.md"
+
+          move_if_exists "build-dataset.ipynb" "09_assignment_build_dataset/build-dataset.ipynb"
+          move_if_exists "dataset-detective.ipynb" "10_assignment_dataset_detective/dataset-detective.ipynb"
+          move_if_exists "data-doctor.ipynb" "11_assignment_data_doctor/data-doctor.ipynb"
+
+          move_if_exists "customer-segmentation.ipynb" "12_assignment_customer_segmentation/customer-segmentation.ipynb"
+          move_if_exists "Mall_Customers.csv" "12_assignment_customer_segmentation/Mall_Customers.csv"
+
+          move_if_exists "decision-tree.ipynb" "13_assignment_decision_tree/decision-tree.ipynb"
+          move_if_exists "house-price-predictor.ipynb" "14_assignment_house_price_predictor/house-price-predictor.ipynb"
+          move_if_exists "graphs.ipynb" "15_assignment_graphs/graphs.ipynb"
+          move_if_exists "image-as-numbers.ipynb" "16_assignment_image_as_numbers/image-as-numbers.ipynb"
+          move_if_exists "image-filter-lab.ipynb" "17_assignment_image_filter_lab/image-filter-lab.ipynb"
+          move_if_exists "numpyspeed.ipynb" "18_assignment_numpy_speed/numpyspeed.ipynb"
+
+          move_if_exists "movie-sentiment.ipynb" "19_assignment_movie_sentiment/movie-sentiment.ipynb"
+          move_if_exists "spam-classifier.ipynb" "20_assignment_spam_classifier/spam-classifier.ipynb"
+          move_if_exists "nlp-mini-app.ipynb" "21_assignment_nlp_mini_app/nlp-mini-app.ipynb"
+          move_if_exists "text-cleaner.ipynb" "22_assignment_text_cleaner/text-cleaner.ipynb"
+          move_if_exists "text-challenges.ipynb" "23_assignment_text_challenges/text-challenges.ipynb"
+          move_if_exists "word-importance.ipynb" "24_assignment_word_importance/word-importance.ipynb"
+
+          move_if_exists "auth.py" "25_assignment_python_auth_script/auth.py"
+          move_if_exists "conditional-statements.py" "26_assignment_conditional_statements/conditional-statements.py"
+
+          if [ -e "student-data-manager" ]; then
+            git mv -f "student-data-manager" "27_assignment_student_data_manager/student-data-manager.py"
+          fi
+
+          move_if_exists "sample.png" "28_assignment_sample_image/sample.png"
+
+          make_assignment_readme() {
+            local dir="$1"; local title="$2"; shift 2
+            cat > "$dir/README.md" <<EOF
+          # $title
+
+          ## Overview
+          This folder contains the work for **$title**.
+
+          ## Files
+          EOF
+            for f in "$@"; do
+              echo "- \`$f\`" >> "$dir/README.md"
+            done
+            cat >> "$dir/README.md" <<'EOF'
+
+          ## How to view / run
+          - For `.md` files: open directly on GitHub.
+          - For `.ipynb` files: open in Jupyter Notebook/Lab (or VS Code).
+          - For `.py` files: run with `python <file>.py`.
+          EOF
+          }
+
+          make_assignment_readme "01_assignment_ai_applications" "Assignment 01: AI Applications" "List-Applications-of-AI.md"
+          make_assignment_readme "02_assignment_break_the_ai" "Assignment 02: Break the AI" "break-the-ai.md"
+          make_assignment_readme "03_assignment_detection_brainstorm" "Assignment 03: Detection Brainstorm" "detection-brainstorm.md"
+          make_assignment_readme "04_assignment_knn_in_real_life" "Assignment 04: KNN in Real Life" "knn-in-real-life.md"
+          make_assignment_readme "05_assignment_mini_project_proposal" "Assignment 05: Mini Project Proposal" "mini-project-proposal.md"
+          make_assignment_readme "06_assignment_ml_ideas" "Assignment 06: ML Ideas" "ml-ideas.md"
+          make_assignment_readme "07_assignment_prompt_engineer" "Assignment 07: Prompt Engineer" "prompt-engineer.md"
+          make_assignment_readme "08_assignment_semantic_meaning" "Assignment 08: Semantic Meaning" "semantic-meaning.md"
+          make_assignment_readme "09_assignment_build_dataset" "Assignment 09: Build Dataset" "build-dataset.ipynb"
+          make_assignment_readme "10_assignment_dataset_detective" "Assignment 10: Dataset Detective" "dataset-detective.ipynb"
+          make_assignment_readme "11_assignment_data_doctor" "Assignment 11: Data Doctor" "data-doctor.ipynb"
+          make_assignment_readme "12_assignment_customer_segmentation" "Assignment 12: Customer Segmentation" "customer-segmentation.ipynb" "Mall_Customers.csv"
+          make_assignment_readme "13_assignment_decision_tree" "Assignment 13: Decision Tree" "decision-tree.ipynb"
+          make_assignment_readme "14_assignment_house_price_predictor" "Assignment 14: House Price Predictor" "house-price-predictor.ipynb"
+          make_assignment_readme "15_assignment_graphs" "Assignment 15: Graphs" "graphs.ipynb"
+          make_assignment_readme "16_assignment_image_as_numbers" "Assignment 16: Image as Numbers" "image-as-numbers.ipynb"
+          make_assignment_readme "17_assignment_image_filter_lab" "Assignment 17: Image Filter Lab" "image-filter-lab.ipynb"
+          make_assignment_readme "18_assignment_numpy_speed" "Assignment 18: NumPy Speed" "numpyspeed.ipynb"
+          make_assignment_readme "19_assignment_movie_sentiment" "Assignment 19: Movie Sentiment" "movie-sentiment.ipynb"
+          make_assignment_readme "20_assignment_spam_classifier" "Assignment 20: Spam Classifier" "spam-classifier.ipynb"
+          make_assignment_readme "21_assignment_nlp_mini_app" "Assignment 21: NLP Mini App" "nlp-mini-app.ipynb"
+          make_assignment_readme "22_assignment_text_cleaner" "Assignment 22: Text Cleaner" "text-cleaner.ipynb"
+          make_assignment_readme "23_assignment_text_challenges" "Assignment 23: Text Challenges" "text-challenges.ipynb"
+          make_assignment_readme "24_assignment_word_importance" "Assignment 24: Word Importance" "word-importance.ipynb"
+          make_assignment_readme "25_assignment_python_auth_script" "Assignment 25: Python Auth Script" "auth.py"
+          make_assignment_readme "26_assignment_conditional_statements" "Assignment 26: Conditional Statements" "conditional-statements.py"
+          make_assignment_readme "27_assignment_student_data_manager" "Assignment 27: Student Data Manager" "student-data-manager.py"
+          make_assignment_readme "28_assignment_sample_image" "Assignment 28: Sample Image" "sample.png"
+
+          cat > README.md <<'EOF'
+          # SuprMentr Assignments
+
+          This repository contains my internship assignments/tasks completed at **SuprMentr**.
+
+          Each assignment is organized into a numbered folder (`01_`, `02_`, …). Each folder contains:
+          - the related notebook/script/notes
+          - a small `README.md` explaining the contents
+
+          ## Assignments Index
+
+          | # | Folder | Main file(s) |
+          |---:|---|---|
+          | 01 | `01_assignment_ai_applications/` | `List-Applications-of-AI.md` |
+          | 02 | `02_assignment_break_the_ai/` | `break-the-ai.md` |
+          | 03 | `03_assignment_detection_brainstorm/` | `detection-brainstorm.md` |
+          | 04 | `04_assignment_knn_in_real_life/` | `knn-in-real-life.md` |
+          | 05 | `05_assignment_mini_project_proposal/` | `mini-project-proposal.md` |
+          | 06 | `06_assignment_ml_ideas/` | `ml-ideas.md` |
+          | 07 | `07_assignment_prompt_engineer/` | `prompt-engineer.md` |
+          | 08 | `08_assignment_semantic_meaning/` | `semantic-meaning.md` |
+          | 09 | `09_assignment_build_dataset/` | `build-dataset.ipynb` |
+          | 10 | `10_assignment_dataset_detective/` | `dataset-detective.ipynb` |
+          | 11 | `11_assignment_data_doctor/` | `data-doctor.ipynb` |
+          | 12 | `12_assignment_customer_segmentation/` | `customer-segmentation.ipynb`, `Mall_Customers.csv` |
+          | 13 | `13_assignment_decision_tree/` | `decision-tree.ipynb` |
+          | 14 | `14_assignment_house_price_predictor/` | `house-price-predictor.ipynb` |
+          | 15 | `15_assignment_graphs/` | `graphs.ipynb` |
+          | 16 | `16_assignment_image_as_numbers/` | `image-as-numbers.ipynb` |
+          | 17 | `17_assignment_image_filter_lab/` | `image-filter-lab.ipynb` |
+          | 18 | `18_assignment_numpy_speed/` | `numpyspeed.ipynb` |
+          | 19 | `19_assignment_movie_sentiment/` | `movie-sentiment.ipynb` |
+          | 20 | `20_assignment_spam_classifier/` | `spam-classifier.ipynb` |
+          | 21 | `21_assignment_nlp_mini_app/` | `nlp-mini-app.ipynb` |
+          | 22 | `22_assignment_text_cleaner/` | `text-cleaner.ipynb` |
+          | 23 | `23_assignment_text_challenges/` | `text-challenges.ipynb` |
+          | 24 | `24_assignment_word_importance/` | `word-importance.ipynb` |
+          | 25 | `25_assignment_python_auth_script/` | `auth.py` |
+          | 26 | `26_assignment_conditional_statements/` | `conditional-statements.py` |
+          | 27 | `27_assignment_student_data_manager/` | `student-data-manager.py` |
+          | 28 | `28_assignment_sample_image/` | `sample.png` |
+          EOF
+
+          if git diff --quiet; then
+            echo "No changes detected; nothing to commit."
+            exit 0
+          fi
+
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          git add -A
+          git commit -m "chore: organize repo into numbered assignment folders"
+          git push
+
+      - name: Summary
+        run: echo "Restructure completed. Check the latest commit on this branch."
