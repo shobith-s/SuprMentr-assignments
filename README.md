@@ -1,76 +1,40 @@
 # SuprMentr Assignments
 
-A collection of assignments and mini-project work completed during my internship at **SuprMentr**.
+This repository contains my internship assignments/tasks completed at **SuprMentr**.
 
-This repository is primarily a set of **Jupyter Notebooks** and **Python scripts** covering:
-- Python fundamentals
-- Data preparation and exploration
-- Classical Machine Learning
-- NLP mini tasks
-- Short notes / writeups
+Each assignment is organized into a numbered folder (`01_`, `02_`, …). Each folder contains:
+- the related notebook/script/notes
+- a small `README.md` explaining the contents
 
-## Repository Structure
+## Assignments Index
 
-```
-01_python-basics/        # small Python scripts / core concepts
-02_data-prep/            # dataset building, basic preprocessing
-03_ml-classical/         # classical ML notebooks (clustering, trees, etc.)
-04_nlp/                  # NLP notebooks / mini apps
-05_projects/             # mini-project proposals & larger work
-notes/                   # markdown writeups / reflections
-datasets/                # datasets used by notebooks
-assets/                  # images and other static files
-```
-
-## Quick Index
-
-### Notebooks
-- `02_data-prep/02_01_build_dataset.ipynb`
-- `03_ml-classical/03_01_customer_segmentation.ipynb`
-- `03_ml-classical/03_02_decision_tree.ipynb`
-- `03_ml-classical/03_03_house_price_predictor.ipynb`
-- `03_ml-classical/03_04_graphs.ipynb`
-- `03_ml-classical/03_05_image_as_numbers.ipynb`
-- `03_ml-classical/03_06_image_filter_lab.ipynb`
-- `04_nlp/04_01_movie_sentiment.ipynb`
-- `04_nlp/04_02_spam_classifier.ipynb`
-- `04_nlp/04_03_nlp_mini_app.ipynb`
-- `04_nlp/04_04_text_cleaner.ipynb`
-- `04_nlp/04_05_text_challenges.ipynb`
-- `04_nlp/04_06_word_importance.ipynb`
-- `03_ml-classical/03_07_numpy_speed.ipynb`
-- `02_data-prep/02_02_dataset_detective.ipynb`
-- `02_data-prep/02_03_data_doctor.ipynb`
-
-### Notes / Writeups
-- `notes/notes_01_ai_applications.md`
-- `notes/notes_02_break_the_ai.md`
-- `notes/notes_03_detection_brainstorm.md`
-- `notes/notes_04_knn_in_real_life.md`
-- `notes/notes_05_mini_project_proposal.md`
-- `notes/notes_06_ml_ideas.md`
-- `notes/notes_07_prompt_engineer.md`
-- `notes/notes_08_semantic_meaning.md`
-
-### Datasets / Assets
-- `datasets/mall_customers.csv`
-- `assets/sample.png`
-
-## How to Run
-
-1. Clone the repo
-2. Create a virtual environment (recommended)
-3. Install common dependencies:
-   - `numpy`, `pandas`, `matplotlib`, `scikit-learn`, `jupyter`
-4. Launch Jupyter:
-   - `jupyter lab` or `jupyter notebook`
-
-> Note: Individual notebooks may require additional packages depending on the topic.
-
-## Naming Convention
-
-Folders are ordered by topic. Files use prefixes like `02_01_...` to keep a **stable, readable order** in GitHub.
-
-## License
-
-No license has been added yet. If you’d like, I can add an MIT License.
+| # | Folder | Main file(s) |
+|---:|---|---|
+| 01 | `01_assignment_ai_applications/` | `List-Applications-of-AI.md` |
+| 02 | `02_assignment_break_the_ai/` | `break-the-ai.md` |
+| 03 | `03_assignment_detection_brainstorm/` | `detection-brainstorm.md` |
+| 04 | `04_assignment_knn_in_real_life/` | `knn-in-real-life.md` |
+| 05 | `05_assignment_mini_project_proposal/` | `mini-project-proposal.md` |
+| 06 | `06_assignment_ml_ideas/` | `ml-ideas.md` |
+| 07 | `07_assignment_prompt_engineer/` | `prompt-engineer.md` |
+| 08 | `08_assignment_semantic_meaning/` | `semantic-meaning.md` |
+| 09 | `09_assignment_build_dataset/` | `build-dataset.ipynb` |
+| 10 | `10_assignment_dataset_detective/` | `dataset-detective.ipynb` |
+| 11 | `11_assignment_data_doctor/` | `data-doctor.ipynb` |
+| 12 | `12_assignment_customer_segmentation/` | `customer-segmentation.ipynb`, `Mall_Customers.csv` |
+| 13 | `13_assignment_decision_tree/` | `decision-tree.ipynb` |
+| 14 | `14_assignment_house_price_predictor/` | `house-price-predictor.ipynb` |
+| 15 | `15_assignment_graphs/` | `graphs.ipynb` |
+| 16 | `16_assignment_image_as_numbers/` | `image-as-numbers.ipynb` |
+| 17 | `17_assignment_image_filter_lab/` | `image-filter-lab.ipynb` |
+| 18 | `18_assignment_numpy_speed/` | `numpyspeed.ipynb` |
+| 19 | `19_assignment_movie_sentiment/` | `movie-sentiment.ipynb` |
+| 20 | `20_assignment_spam_classifier/` | `spam-classifier.ipynb` |
+| 21 | `21_assignment_nlp_mini_app/` | `nlp-mini-app.ipynb` |
+| 22 | `22_assignment_text_cleaner/` | `text-cleaner.ipynb` |
+| 23 | `23_assignment_text_challenges/` | `text-challenges.ipynb` |
+| 24 | `24_assignment_word_importance/` | `word-importance.ipynb` |
+| 25 | `25_assignment_python_auth_script/` | `auth.py` |
+| 26 | `26_assignment_conditional_statements/` | `conditional-statements.py` |
+| 27 | `27_assignment_student_data_manager/` | `student-data-manager.py` |
+| 28 | `28_assignment_sample_image/` | `sample.png` |
